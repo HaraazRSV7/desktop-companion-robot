@@ -28,6 +28,10 @@ src/micro-ROS-Agent/
 src/my_cpp_pkg/
 src/turtle_catch/
 
+# Unused ROS2 packages
+src/my_robot_description/
+src/my_robot_interfaces/
+
 # my_robot_bringup - tutorial files
 src/my_robot_bringup/config/news_app.yaml
 src/my_robot_bringup/config/number_app.yaml
@@ -37,21 +41,8 @@ src/my_robot_bringup/launch/number_app.launch.py
 src/my_robot_bringup/launch/number_app.launch.xml
 src/my_robot_bringup/launch/turtle_app.launch.xml
 
-# my_py_pkg - ROS2 learning files
-src/my_py_pkg/my_py_pkg/add_two_ints_client.py
-src/my_py_pkg/my_py_pkg/add_two_ints_client_no_oop.py
-src/my_py_pkg/my_py_pkg/add_two_ints_server.py
-src/my_py_pkg/my_py_pkg/my_first_node.py
-src/my_py_pkg/my_py_pkg/number_counter.py
-src/my_py_pkg/my_py_pkg/number_publisher.py
-src/my_py_pkg/my_py_pkg/py_template.py
-src/my_py_pkg/my_py_pkg/robot_news_station.py
-src/my_py_pkg/my_py_pkg/smartphone.py
-
-# Unused ROS2 packages
-src/my_robot_description/
-src/my_robot_interfaces/
-
+# Unused old robot launch file
+src/my_robot_bringup/launch/my_robot_gazebo.launch.xml
 
 # my_py_pkg - only move_robot.py is part of this project
 src/my_py_pkg/my_py_pkg/add_two_ints_client.py
@@ -67,6 +58,3 @@ src/my_py_pkg/my_py_pkg/py_template.py
 src/my_py_pkg/my_py_pkg/robot_news_station.py
 src/my_py_pkg/my_py_pkg/robot_spawn.py
 src/my_py_pkg/my_py_pkg/smartphone.py
-
-# Unused old robot launch file
-src/my_robot_bringup/launch/my_robot_gazebo.launch.xml
