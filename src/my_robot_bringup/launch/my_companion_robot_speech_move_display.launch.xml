@@ -1,0 +1,53 @@
+<launch>
+    <let name="urdf_path" value="$(find-pkg-share my_companion_robot)/urdf/robot.urdf.xacro" />
+    <let name="rviz_config_path" value="$(find-pkg-share my_companion_robot)/rviz/robot_config.rviz" />
+    <let name="gazebo_config_path" value="$(find-pkg-share my_robot_bringup)/config/companion_gazebo_bridge.yaml" />
+    
+    <!-- ROBOT STATE PUBLISHER -->
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+        <param name="robot_description"
+                value="$(command 'xacro $(var urdf_path)')" />
+    </node>
+
+
+    <!-- Gazebo Simulation -->
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py" >
+        <arg name="gz_args" value="empty.sdf -r" />
+        <!-- <arg name="gz_args" value="$(find-pkg-share my_robot_bringup)/worlds/test_world.sdf -r" /> -->
+    </include>
+
+
+    <!-- Spawn the robot in Gazebo using the robot_description topic -->
+    <node pkg="ros_gz_sim" exec="create" args="-topic robot_description" /> 
+
+    <node pkg="ros_gz_bridge" exec="parameter_bridge">
+        <param name="config_file" value="$(var gazebo_config_path)" />
+    </node>
+    
+    <node pkg="rviz2" exec="rviz2" output="screen" 
+        args="-d $(var rviz_config_path)"/>
+
+    
+     <!-- Speech Recognition -->
+    <node
+        pkg="speech_recognition"
+        exec="speech_node"
+        name="speech_node"
+        output="screen" />
+
+    <!-- Robot Command Node -->
+    <node
+        pkg="my_py_pkg"
+        exec="move_robot"
+        name="move_robot"
+        output="screen" />
+
+    <!-- micro-ROS Agent -->
+    <node
+        pkg="micro_ros_agent"
+        exec="micro_ros_agent"
+        name="micro_ros_agent"
+        output="screen"
+        args="udp4 --port 8888" />
+
+</launch>
